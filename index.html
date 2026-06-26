@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>DAI Research Portal: Singapore 1819</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Spectral:ital,wght@0,300;0,400;0,500;1,400&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          cream:    "#EFE9DC",
+          paper:    "#FBF8F2",
+          panel:    "#F6F1E7",
+          ink:      "#2A2521",
+          "ink-soft": "#5C544B",
+          blue:     "#1C3D5A",
+          "blue-deep": "#142C42",
+          gold:     "#A8842F",
+          "gold-soft": "#C2A35A",
+          line:     "#D8CFBE",
+          "line-strong": "#C4B89F",
+        },
+        fontFamily: {
+          display: ['Fraunces', 'serif'],
+          serif:   ['Spectral', 'serif'],
+          ui:      ['Inter', 'system-ui', 'sans-serif'],
+          mono:    ['"JetBrains Mono"', 'monospace'],
+        },
+      },
+    },
+  };
+</script>
+
+<style>
+  html { scroll-behavior: smooth; }
+  body {
+    background-color: #EFE9DC;
+    background-image:
+      radial-gradient(120% 80% at 80% -10%, rgba(255,255,255,0.55), transparent 60%),
+      radial-gradient(100% 90% at 0% 110%, rgba(28,61,90,0.05), transparent 55%);
+  }
+
+  /* Thin top accent rule */
+  .rule-gold { background: linear-gradient(90deg, #A8842F 0%, #C2A35A 45%, transparent 100%); }
+
+  /* Timeline vertical spine */
+  .timeline-spine::before {
+    content: "";
+    position: absolute;
+    left: 7px; top: 6px; bottom: 6px;
+    width: 1px;
+    background: linear-gradient(180deg, #C4B89F 0%, #C4B89F 85%, transparent 100%);
+  }
+
+  /* Chat scroll area */
+  .chat-log { scrollbar-width: thin; scrollbar-color: #C4B89F transparent; }
+  .chat-log::-webkit-scrollbar { width: 8px; }
+  .chat-log::-webkit-scrollbar-thumb { background: #C4B89F; border-radius: 99px; }
+  .chat-log::-webkit-scrollbar-track { background: transparent; }
+
+  /* Message entrance */
+  .msg-enter { animation: msgIn .42s cubic-bezier(.2,.7,.3,1) both; }
+  @keyframes msgIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Typing dots */
+  .dot { animation: blink 1.2s infinite ease-in-out; }
+  .dot:nth-child(2) { animation-delay: .2s; }
+  .dot:nth-child(3) { animation-delay: .4s; }
+  @keyframes blink { 0%,80%,100% { opacity:.25; } 40% { opacity:1; } }
+
+  :focus-visible { outline: 2px solid #1C3D5A; outline-offset: 2px; border-radius: 2px; }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .msg-enter, .dot { animation: none !important; }
+  }
+</style>
+</head>
+
+<body class="font-ui text-ink antialiased">
+
+  <!-- ===================== HEADER ===================== -->
+  <header class="border-b border-line-strong bg-paper/80 backdrop-blur-sm sticky top-0 z-20">
+    <div class="rule-gold h-[2px] w-full"></div>
+    <div class="max-w-[1400px] mx-auto px-6 sm:px-8 py-4 flex items-center justify-between gap-4">
+
+      <div class="flex items-center gap-4 min-w-0">
+        <!-- Minimalist geometric mark -->
+        <div class="shrink-0 w-11 h-11 border border-ink/80 flex items-center justify-center relative">
+          <div class="w-5 h-5 border border-gold rotate-45"></div>
+          <div class="absolute inset-0 border-t border-l border-ink/20"></div>
+        </div>
+        <div class="min-w-0">
+          <p class="font-mono text-[10px] sm:text-[11px] tracking-[0.28em] uppercase text-ink-soft mb-0.5">
+            Digital Archives Initiative · SUTD
+          </p>
+          <h1 class="font-display text-xl sm:text-2xl leading-none font-medium tracking-tight truncate">
+            DAI Research Portal: <span class="text-blue">Singapore 1819</span>
+          </h1>
+        </div>
+      </div>
+
+      <div class="hidden sm:flex items-center gap-5 shrink-0">
+        <div class="text-right leading-tight">
+          <p class="font-mono text-[10px] tracking-[0.2em] uppercase text-ink-soft">Collection No.</p>
+          <p class="font-mono text-[13px] text-ink">SG-1819-RAF</p>
+        </div>
+        <span class="px-2.5 py-1 border border-gold text-gold font-mono text-[10px] tracking-[0.2em] uppercase">
+          Prototype
+        </span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===================== BODY ===================== -->
+  <main class="max-w-[1400px] mx-auto px-6 sm:px-8 py-7">
+    <div class="flex flex-col lg:flex-row gap-7 lg:items-stretch">
+
+      <!-- ---------- LEFT: TIMELINE ---------- -->
+      <aside class="w-full lg:w-[35%] shrink-0">
+        <section class="border border-line-strong bg-panel p-7 h-full">
+
+          <div class="mb-7">
+            <p class="font-mono text-[10px] tracking-[0.28em] uppercase text-gold mb-2">Provenance Record</p>
+            <h2 class="font-display text-2xl leading-tight font-medium">
+              A Historical Timeline<br />of the Founding, 1819
+            </h2>
+            <div class="mt-4 h-px w-16 bg-line-strong"></div>
+          </div>
+
+          <!-- Timeline list -->
+          <ol class="relative timeline-spine pl-7 space-y-7">
+
+            <li class="relative">
+              <span class="absolute -left-7 top-1 w-[15px] h-[15px] rounded-full bg-paper border border-blue flex items-center justify-center">
+                <span class="w-1.5 h-1.5 rounded-full bg-blue"></span>
+              </span>
+              <p class="font-mono text-[11px] tracking-[0.16em] text-gold uppercase mb-1">28 Jan 1819</p>
+              <h3 class="font-display text-base font-medium mb-1">Arrival off the island</h3>
+              <p class="font-serif text-[15px] leading-relaxed text-ink-soft">
+                Raffles anchors his survey expedition off the mouth of the Singapore River, judging the harbour ideal for a free port.
+              </p>
+            </li>
+
+            <li class="relative">
+              <span class="absolute -left-7 top-1 w-[15px] h-[15px] rounded-full bg-paper border border-blue flex items-center justify-center">
+                <span class="w-1.5 h-1.5 rounded-full bg-blue"></span>
+              </span>
+              <p class="font-mono text-[11px] tracking-[0.16em] text-gold uppercase mb-1">29 Jan 1819</p>
+              <h3 class="font-display text-base font-medium mb-1">The landing</h3>
+              <p class="font-serif text-[15px] leading-relaxed text-ink-soft">
+                Raffles steps ashore and opens negotiations with the Temenggong, Abdul Rahman, the island's resident Malay chief.
+              </p>
+            </li>
+
+            <li class="relative">
+              <span class="absolute -left-7 top-1 w-[15px] h-[15px] rounded-full bg-blue border border-blue-deep flex items-center justify-center ring-4 ring-blue/10">
+                <span class="w-1.5 h-1.5 rounded-full bg-paper"></span>
+              </span>
+              <p class="font-mono text-[11px] tracking-[0.16em] text-gold uppercase mb-1">06 Feb 1819</p>
+              <h3 class="font-display text-base font-medium mb-1">Treaty signed</h3>
+              <p class="font-serif text-[15px] leading-relaxed text-ink-soft">
+                A formal treaty with Sultan Hussein Shah and the Temenggong grants the East India Company the right to establish a trading post.
+              </p>
+            </li>
+
+            <li class="relative">
+              <span class="absolute -left-7 top-1 w-[15px] h-[15px] rounded-full bg-paper border border-blue flex items-center justify-center">
+                <span class="w-1.5 h-1.5 rounded-full bg-blue"></span>
+              </span>
+              <p class="font-mono text-[11px] tracking-[0.16em] text-gold uppercase mb-1">07 Feb 1819</p>
+              <h3 class="font-display text-base font-medium mb-1">Departure & first Resident</h3>
+              <p class="font-serif text-[15px] leading-relaxed text-ink-soft">
+                Raffles sails on, leaving Major William Farquhar as the settlement's first Resident and Commandant.
+              </p>
+            </li>
+
+          </ol>
+
+          <p class="mt-8 pt-5 border-t border-line font-serif italic text-[13px] leading-relaxed text-ink-soft">
+            Dates follow the standard colonial-era chronology. Select a milestone to ground your questions in the chat panel.
+          </p>
+        </section>
+      </aside>
+
+      <!-- ---------- RIGHT: CHAT ---------- -->
+      <section class="w-full lg:w-[65%] flex flex-col border border-line-strong bg-paper lg:h-[calc(100vh-160px)] min-h-[560px]">
+
+        <!-- Chat header -->
+        <div class="flex items-center justify-between gap-4 px-6 py-4 border-b border-line bg-panel/60">
+          <div class="flex items-center gap-3.5 min-w-0">
+            <div class="raffles-avatar shrink-0 w-11 h-11 rounded-full overflow-hidden border border-blue-deep"></div>
+            <div class="min-w-0">
+              <p class="font-display text-lg leading-tight font-medium truncate">Sir Stamford Raffles</p>
+              <p class="font-mono text-[10px] tracking-[0.16em] uppercase text-ink-soft">
+                <span class="inline-block w-1.5 h-1.5 rounded-full bg-gold mr-1 align-middle"></span>
+                Generative reconstruction
+              </p>
+            </div>
+          </div>
+          <span class="hidden sm:inline-block font-mono text-[10px] tracking-[0.16em] uppercase text-ink-soft border border-line px-2 py-1">
+            AI&nbsp;·&nbsp;Simulated
+          </span>
+        </div>
+
+        <!-- Disclaimer ribbon -->
+        <div class="px-6 py-2 bg-blue/5 border-b border-line">
+          <p class="font-serif italic text-[12.5px] text-ink-soft leading-snug">
+            Responses are an AI-generated interpretation for research purposes, not verbatim historical quotation.
+          </p>
+        </div>
+
+        <!-- Message log -->
+        <div id="chatLog" class="chat-log flex-1 overflow-y-auto px-6 py-6 space-y-5">
+
+          <!-- Date divider -->
+          <div class="flex items-center gap-3 text-ink-soft">
+            <span class="flex-1 h-px bg-line"></span>
+            <span class="font-mono text-[10px] tracking-[0.2em] uppercase">Transcript begins</span>
+            <span class="flex-1 h-px bg-line"></span>
+          </div>
+
+          <!-- Mock Raffles message -->
+          <div class="msg-enter flex items-end gap-3">
+            <div class="raffles-avatar shrink-0 w-8 h-8 rounded-full overflow-hidden border border-blue-deep"></div>
+            <div class="max-w-[78%]">
+              <div class="bg-panel border border-line rounded-2xl rounded-bl-md px-4 py-3">
+                <p class="font-serif text-[15.5px] leading-relaxed text-ink">
+                  Good day to you. I am newly come from the harbour, where I have surveyed a settlement of singular promise. Ask freely of the voyage, the treaty, or my designs for a free port, and I shall answer as best I am able.
+                </p>
+              </div>
+              <p class="mt-1 ml-1 font-mono text-[10px] tracking-[0.12em] uppercase text-ink-soft">Raffles · 06 Feb 1819</p>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Input bar -->
+        <div class="border-t border-line bg-panel/60 px-4 sm:px-6 py-4">
+          <div class="flex items-end gap-3">
+            <div class="flex-1 flex items-center bg-paper border border-line-strong focus-within:border-blue transition-colors">
+              <input
+                id="chatInput"
+                type="text"
+                autocomplete="off"
+                placeholder="Ask Sir Stamford Raffles about the founding…"
+                class="flex-1 bg-transparent px-4 py-3 font-serif text-[15px] text-ink placeholder:text-ink-soft/70 focus:outline-none"
+                aria-label="Type your message to Sir Stamford Raffles"
+              />
+            </div>
+            <button
+              id="sendBtn"
+              type="button"
+              class="shrink-0 inline-flex items-center gap-2 bg-blue hover:bg-blue-deep text-paper font-ui text-sm font-medium px-5 py-3 border border-blue-deep transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+            >
+              Send
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="22" y1="2" x2="11" y2="13"></line>
+                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+              </svg>
+            </button>
+          </div>
+          <p class="mt-2 font-mono text-[10px] tracking-[0.14em] uppercase text-ink-soft/80">
+            Press Enter to send · Prototype dialogue
+          </p>
+        </div>
+
+      </section>
+    </div>
+  </main>
+
+  <!-- ===================== SCRIPT ===================== -->
+  <script>
+    (function () {
+      const log = document.getElementById('chatLog');
+      const input = document.getElementById('chatInput');
+      const sendBtn = document.getElementById('sendBtn');
+
+      // ── Sir Stamford Raffles cameo avatar (original SVG, fully self-contained) ──
+      const RAFFLES_SVG =
+        '<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block" aria-hidden="true">' +
+        '<circle cx="50" cy="50" r="50" fill="#1C3D5A"/>' +
+        '<circle cx="50" cy="50" r="46" fill="none" stroke="#C2A35A" stroke-width="1.6"/>' +
+        '<circle cx="50" cy="50" r="42" fill="#16344E"/>' +
+        '<path fill="#F3EEE3" d="M19,100C19,82 27,72 40,69C41,67 42,65 42,63C33,61 27,54 28,44C29,33 38,25 52,25C62,25 70,29 73,38L74,43C76,45 79,48 79,50C79,52 76,53 74,54C74,56 73,58 74,60C74,63 71,65 66,66C62,67 60,70 60,74C60,78 64,81 69,83C78,86 84,92 87,100Z"/>' +
+        '<path fill="#F3EEE3" d="M60,74C60,78 64,81 69,83C73,84 78,87 81,91L77,96C72,92 66,89 62,86C58,83 56,79 57,75Z"/>' +
+        '<path fill="#C2A35A" d="M58,80C61,83 66,85 71,88L69,91C64,88 60,86 57,83Z"/>' +
+        '</svg>';
+
+      // Paint the cameo into the static avatars already in the markup
+      document.querySelectorAll('.raffles-avatar').forEach(el => { el.innerHTML = RAFFLES_SVG; });
+
+      // ── Conversation history (the API is stateless, so we resend it each turn) ──
+      // Seeded with the greeting already shown in the transcript above.
+      const history = [
+        {
+          role: "assistant",
+          content: "Good day to you. I am newly come from the harbour, where I have surveyed a settlement of singular promise. Ask freely of the voyage, the treaty, or my designs for a free port, and I shall answer as best I am able."
+        }
+      ];
+
+      // ── Persona brief sent to Claude so it answers IN CHARACTER as Raffles ──
+      const SYSTEM_PROMPT = [
+        "You are Sir Thomas Stamford Raffles, in late January / early February 1819, having just",
+        "established a British settlement at Singapore for the East India Company. Stay fully in character.",
+        "",
+        "Voice: speak in the first person, in dignified early-19th-century English. Be courteous and",
+        "articulate. Keep replies to 2–4 sentences so they read well in a chat bubble.",
+        "",
+        "What you know: the survey voyage aboard the ship Indiana and its rough passage; landing on 29",
+        "January and meeting the Temenggong, Abdul Rahman; the treaty of 6 February 1819 with Sultan",
+        "Hussein Shah and the Temenggong granting the Company leave to found a trading post; your vision of",
+        "a FREE PORT open to all nations; appointing Major William Farquhar as the first Resident; and the",
+        "rivalry with the Dutch over the Straits.",
+        "",
+        "If you are asked about your hopes for the island's future, answer earnestly with your aspirations",
+        "for a thriving free port and entrepôt of trade. If — and ONLY if — you are asked about genuinely",
+        "anachronistic things (telephones, the internet, the year 2026, modern machines), respond with",
+        "sincere period confusion, for such things are unknown to you in 1819. Never break character or",
+        "mention that you are an AI."
+      ].join("\n");
+
+      // ── Improved keyword fallback (used only if the API is unreachable, e.g. opened offline) ──
+      const rules = [
+        {
+          keywords: ['future', 'look forward', 'vision', 'hope', 'become', 'prosper', 'prospect', 'destiny', 'years to come'],
+          reply: "I look to a future of singular promise for this island. Free of duties and open to every flag, I am persuaded this harbour shall grow into a great entrepôt of the East — a meeting-place of nations where commerce, and with it the settlement, may flourish beyond our present reckoning."
+        },
+        {
+          keywords: ['voyage', 'rough', 'journey', 'sea', 'sail', 'ship', 'indiana', 'passage'],
+          reply: "Ah, the passage aboard the Indiana was a trying one — rough seas and contrary winds harried us the whole way. More than once I feared for the survey, yet we made our anchorage off the river mouth at last, weary but whole."
+        },
+        {
+          keywords: ['treaty', 'sultan', 'agreement', 'temenggong', 'sign'],
+          reply: "The treaty was concluded on the sixth of February with Sultan Hussein Shah and the Temenggong, Abdul Rahman. By its terms the East India Company is granted leave to establish a trading post upon these shores — a free port, open to the commerce of all nations."
+        },
+        {
+          keywords: ['phone', 'telephone', 'internet', 'computer', 'smartphone', 'wifi', '2026', 'electric', 'television', 'aeroplane', 'airplane', 'robot', 'app '],
+          reply: "Forgive me — I confess I do not follow your meaning. The year is eighteen hundred and nineteen, and I know nothing of such contrivances. You speak as though from some distant age I cannot fathom. Pray, are we not both standing upon this same shore?"
+        }
+      ];
+
+      const fallback =
+        "Good day to you. I fear I do not quite grasp your inquiry as put. Pray be so good as to state your question plainly — whether it concerns the voyage, the treaty of the sixth, or my hopes for the settlement — and I shall answer as fully as I am able.";
+
+      function keywordReply(text) {
+        const t = text.toLowerCase();
+        for (const rule of rules) {
+          if (rule.keywords.some(k => t.includes(k))) return rule.reply;
+        }
+        return fallback;
+      }
+
+      // ── Primary path: ask Claude to answer as Raffles; fall back to keywords on any error ──
+      async function getRafflesReply(text) {
+        try {
+          const res = await fetch("/.netlify/functions/raffles", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              system: SYSTEM_PROMPT,
+              messages: history
+            })
+          });
+          if (!res.ok) throw new Error("API responded " + res.status);
+          const data = await res.json();
+          const reply = (data.content || [])
+            .map(b => (b.type === "text" ? b.text : ""))
+            .join("")
+            .trim();
+          if (!reply) throw new Error("Empty reply");
+          return reply;
+        } catch (err) {
+          console.warn("Live Raffles unavailable, using offline keyword fallback:", err.message);
+          return keywordReply(text);
+        }
+      }
+
+      const now = () => new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+      function scrollToBottom() {
+        log.scrollTop = log.scrollHeight;
+      }
+
+      function appendUser(text) {
+        const wrap = document.createElement('div');
+        wrap.className = 'msg-enter flex items-end justify-end gap-3';
+        wrap.innerHTML = `
+          <div class="max-w-[78%] text-right">
+            <div class="bg-blue text-paper rounded-2xl rounded-br-md px-4 py-3 text-left">
+              <p class="font-serif text-[15.5px] leading-relaxed"></p>
+            </div>
+            <p class="mt-1 mr-1 font-mono text-[10px] tracking-[0.12em] uppercase text-ink-soft">You · ${now()}</p>
+          </div>
+          <div class="shrink-0 w-8 h-8 rounded-full bg-paper border border-line-strong text-ink-soft font-ui text-xs font-semibold flex items-center justify-center">You</div>
+        `;
+        wrap.querySelector('p.font-serif').textContent = text; // safe text insertion
+        log.appendChild(wrap);
+        scrollToBottom();
+      }
+
+      function showTyping() {
+        const wrap = document.createElement('div');
+        wrap.id = 'typingIndicator';
+        wrap.className = 'flex items-end gap-3';
+        wrap.innerHTML = `
+          <div class="raffles-avatar shrink-0 w-8 h-8 rounded-full overflow-hidden border border-blue-deep">${RAFFLES_SVG}</div>
+          <div class="bg-panel border border-line rounded-2xl rounded-bl-md px-4 py-3.5 flex items-center gap-1.5">
+            <span class="dot w-1.5 h-1.5 rounded-full bg-ink-soft"></span>
+            <span class="dot w-1.5 h-1.5 rounded-full bg-ink-soft"></span>
+            <span class="dot w-1.5 h-1.5 rounded-full bg-ink-soft"></span>
+          </div>
+        `;
+        log.appendChild(wrap);
+        scrollToBottom();
+      }
+
+      function appendRaffles(text) {
+        const typing = document.getElementById('typingIndicator');
+        if (typing) typing.remove();
+
+        const wrap = document.createElement('div');
+        wrap.className = 'msg-enter flex items-end gap-3';
+        wrap.innerHTML = `
+          <div class="raffles-avatar shrink-0 w-8 h-8 rounded-full overflow-hidden border border-blue-deep">${RAFFLES_SVG}</div>
+          <div class="max-w-[78%]">
+            <div class="bg-panel border border-line rounded-2xl rounded-bl-md px-4 py-3">
+              <p class="font-serif text-[15.5px] leading-relaxed text-ink"></p>
+            </div>
+            <p class="mt-1 ml-1 font-mono text-[10px] tracking-[0.12em] uppercase text-ink-soft">Raffles · simulated</p>
+          </div>
+        `;
+        wrap.querySelector('p.font-serif').textContent = text;
+        log.appendChild(wrap);
+        scrollToBottom();
+      }
+
+      async function send() {
+        const text = input.value.trim();
+        if (!text || sendBtn.disabled) return;
+
+        appendUser(text);
+        history.push({ role: "user", content: text });
+        input.value = '';
+
+        // Lock the controls while Raffles composes his reply
+        input.disabled = true;
+        sendBtn.disabled = true;
+        showTyping();
+
+        const reply = await getRafflesReply(text);
+        history.push({ role: "assistant", content: reply });
+        appendRaffles(reply);
+
+        input.disabled = false;
+        sendBtn.disabled = false;
+        input.focus();
+      }
+
+      sendBtn.addEventListener('click', send);
+      input.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') { e.preventDefault(); send(); }
+      });
+
+      input.focus();
+    })();
+  </script>
+</body>
+</html>
